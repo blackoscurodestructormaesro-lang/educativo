@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>App Educativa Completar Palabras</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <img src="descarga.jpg" alt="Logo de la app" style="height:50px;" />
+  Palabras que hacen vibrar tu mente
+</header>
+
+<nav>
+  <button onclick="showPage('home')">Inicio</button>
+  <button onclick="showPage('instructions')">Instrucciones</button>
+  <button onclick="showPage('wordGame')">Jugar</button>
+  <button onclick="showPage('contact')">Contacto</button>
+  <button onclick="exitApp()">Salir</button>
+</nav>
+
+<main>
+  <!-- Inicio -->
+  <section id="home" class="page">
+    <h2>Bienvenido</h2>
+    <p>Esta aplicación ayuda a niños de 4 a 5 años a aprender palabras completando las letras que faltan, con imágenes y diversión.</p>
+    <p>Usa el menú para ir a Jugar, Contacto, o Salir.</p>
+  </section>
+
+  <!-- Instrucciones -->
+  <section id="instructions" class="page hidden">
+    <h2>Instrucciones</h2>
+    <p>Selecciona el nivel de dificultad y completa las letras faltantes correctamente para avanzar y ganar puntos.</p>
+  </section>
+
+  <!-- Juego completar palabras con selector de dificultad -->
+  <section id="wordGame" class="page hidden">
+    <h2>Completa la palabra</h2>
+    <label for="difficulty">Nivel de dificultad:</label>
+    <select id="difficulty" onchange="setDifficulty()">
+      <option value="1" selected>Fácil (1 letra)</option>
+      <option value="2">Medio (2 letras)</option>
+      <option value="3">Difícil (3 letras)</option>
+    </select>
+    <div class="word-box">
+      <img id="image" src="" alt="Imagen palabra" />
+      <div class="word" id="wordDisplay"></div>
+      <input type="text" id="letterInput" aria-label="Letras faltantes" />
+      <br />
+      <button onclick="checkLetter()">Revisar</button>
+      <div id="resultMessage" class="result"></div>
+    </div>
+    <button onclick="nextWord()" class="next-btn">Siguiente palabra</button>
+    <div id="scoreDisplay" style="text-align:center; font-size:1.5rem; font-weight:bold; margin-top:1rem;">Puntaje: 0 🎉</div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contact" class="page hidden">
+    <h2>Contacto</h2>
+    <form id="contactForm" onsubmit="submitContact(event)">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" required />
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
+      <label for="message">Mensaje:</label>
+      <textarea id="message" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="contactResponse" class="result"></div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 - Aventura para Completar Palabras
+</footer>
+
+<audio id="soundCorrect" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg" preload="auto"></audio>
+<audio id="soundWrong" src="https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg" preload="auto"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
